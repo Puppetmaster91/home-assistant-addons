@@ -7,7 +7,7 @@ boot: auto
 host_network: false
 homeassistant_api: false
 init: false
-ingress: false
+ingress: true
 panel_icon: mdi:cloud
 arch:
   - amd64
