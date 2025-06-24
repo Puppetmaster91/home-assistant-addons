@@ -12,6 +12,8 @@ panel_icon: mdi:cloud
 arch:
   - amd64
   - aarch64
+image: ghcr.io/bluesky-social/pds
+privileged: false
 ports:
   3000/tcp: 3000
 map:
