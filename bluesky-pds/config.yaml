@@ -1,6 +1,6 @@
 name: Bluesky PDS
 version: "0.1.0"
-slug: bluesky_pds
+slug: bluesky-pds
 description: Personal Data Server for Bluesky
 startup: services
 boot: auto
