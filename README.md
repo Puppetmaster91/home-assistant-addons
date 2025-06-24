@@ -15,7 +15,7 @@ Run your own [Bluesky Personal Data Server (PDS)](https://github.com/bluesky-soc
 
 ## ℹ️ Installation
 
-1. Add this repo to Home Assistant: https://github.com/YOUR_USERNAME/home-assistant-addons
+1. Add this repo to Home Assistant: https://github.com/Puppetmaster91/home-assistant-addons
 2. Install from Add-on Store
 
 
