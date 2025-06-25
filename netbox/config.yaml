@@ -6,10 +6,12 @@ startup: services
 boot: auto
 homeassistant_api: false
 init: false
-ingress: false
+ingress: true
 arch:
   - amd64
   - aarch64
+ports:
+  8080/tcp: 8080
 options:
   admin_username: admin
   admin_password: password
