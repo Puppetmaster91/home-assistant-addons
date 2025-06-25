@@ -11,7 +11,8 @@ arch:
   - amd64
   - aarch64
 ports:
-  8080/tcp: 8080
+  8000/tcp: 8000
+image: netboxcommunity/netbox:latest
 options:
   admin_username: admin
   admin_password: password
@@ -19,6 +20,8 @@ options:
   db_user: netbox
   db_password: password
   db_name: netbox
+  redis_host: localhost
+  redis_port: 6379
 schema:
   admin_username: str
   admin_password: str
@@ -26,3 +29,5 @@ schema:
   db_user: str
   db_password: str
   db_name: str
+  redis_host: str
+  redis_port: int
