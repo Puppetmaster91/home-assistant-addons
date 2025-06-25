@@ -1,0 +1,26 @@
+name: NetBox
+version: "0.1.0"
+slug: netbox
+description: A Home Assistant add-on to run NetBox
+startup: services
+boot: auto
+homeassistant_api: false
+init: false
+ingress: false
+arch:
+  - amd64
+  - aarch64
+options:
+  admin_username: admin
+  admin_password: password
+  db_host: netbox_db
+  db_user: netbox
+  db_password: password
+  db_name: netbox
+schema:
+  admin_username: str
+  admin_password: str
+  db_host: str
+  db_user: str
+  db_password: str
+  db_name: str
