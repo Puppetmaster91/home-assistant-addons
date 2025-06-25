@@ -12,7 +12,6 @@ arch:
   - aarch64
 ports:
   8000/tcp: 8000
-image: netboxcommunity/netbox:latest
 options:
   admin_username: admin
   admin_password: password
