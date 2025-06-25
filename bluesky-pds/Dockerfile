@@ -1,9 +1,11 @@
 FROM ghcr.io/bluesky-social/pds:main
 
-# Optional: install bash or tools if needed
+# Add bash (if needed by run.sh)
 RUN apk add --no-cache bash
 
+# Copy startup script
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
-CMD ["node", "./bin.js"]
+# Use shell-style CMD so environment variables expand
+CMD /run.sh
