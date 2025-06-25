@@ -1,4 +1,4 @@
-# Puppetmaster Home Assistant Add-ons
+# Puppetmaster Home Assistant Add-ons !WORK IN PROGRESS!
 
 This is a collection of custom Home Assistant add-ons. Currently includes:
 
