@@ -8,25 +8,19 @@ host_network: false
 homeassistant_api: false
 init: false
 ingress: true
-panel_icon: mdi:cloud
 arch:
   - amd64
   - aarch64
-image: ghcr.io/bluesky-social/pds
-privileged: false
-ports:
-  3000/tcp: 3000
-map:
-  - config:rw
-schema:
-  handle: str
-  pds_hostname: str
-  db_url: str
-  repo_signing_key: str
-  admin_password: str
+image: local/bluesky-pds
 options:
   handle: "example.bsky.social"
   pds_hostname: "http://localhost:3000"
   db_url: "postgres://postgres:postgres@postgres:5432/pds"
   repo_signing_key: ""
   admin_password: "changeme"
+schema:
+  handle: str
+  pds_hostname: str
+  db_url: str
+  repo_signing_key: str
+  admin_password: str
