@@ -30,3 +30,12 @@ schema:
   db_password: str
   db_name: str
   db_wait_debug: bool
+environment:
+  SECRET_KEY: "!secret secret_key"
+  DB_HOST: "!secret db_host"
+  DB_NAME: "!secret db_name"
+  DB_USER: "!secret db_user"
+  DB_PASSWORD: "!secret db_password"
+  SUPERUSER_NAME: "!secret admin_username"
+  SUPERUSER_PASSWORD: "!secret admin_password"
+  DB_WAIT_DEBUG: "!secret db_wait_debug"
