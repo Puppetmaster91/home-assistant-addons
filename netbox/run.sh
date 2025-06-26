@@ -14,4 +14,4 @@ fi
 
 # Start NetBox
 echo "🚀 Starting NetBox via supervisord..."
-exec /usr/bin/supervisord -c /etc/supervisord.conf
+exec /docker-entrypoint.sh
