@@ -13,6 +13,7 @@ arch:
 ports:
   8000/tcp: 8000
 options:
+  secret_key: "your-long-secret-key-at-least-50-chars"
   admin_username: admin
   admin_password: password
   db_host: netbox_db
@@ -21,6 +22,7 @@ options:
   db_name: netbox
   db_wait_debug: false
 schema:
+  secret_key: str
   admin_username: str
   admin_password: str
   db_host: str
@@ -29,6 +31,7 @@ schema:
   db_name: str
   db_wait_debug: bool
 environment:
+  SECRET_KEY: "!secret secret_key"
   DB_HOST: "!secret db_host"
   DB_NAME: "!secret db_name"
   DB_USER: "!secret db_user"
