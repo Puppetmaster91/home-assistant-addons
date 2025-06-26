@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# Map Home Assistant options to NetBox environment variables
-export DB_HOST="$db_host"
-export DB_USER="$db_user"
-export DB_PASSWORD="$db_password"
-export DB_NAME="$db_name"
-export REDIS_HOST="$redis_host"
-export REDIS_PORT="$redis_port"
-export SUPERUSER_NAME="$admin_username"
-export SUPERUSER_PASSWORD="$admin_password"
-export SUPERUSER_EMAIL="admin@example.com"
+export DB_HOST="${DB_HOST}"
+export DB_USER="${DB_USER}"
+export DB_PASSWORD="${DB_PASSWORD}"
+export DB_NAME="${DB_NAME}"
+export ADMIN_USERNAME="${ADMIN_USERNAME}"
+export ADMIN_PASSWORD="${ADMIN_PASSWORD}"
 
-# Start the NetBox container (executes the image's entrypoint)
-exec /docker-entrypoint.sh
+if [ "${DB_WAIT_DEBUG}" = "true" ]; then
+  export DB_WAIT_DEBUG=1
+  echo "🔍 DB_WAIT_DEBUG is enabled"
+fi
+
+# Start NetBox
+/opt/netbox/launch.py
