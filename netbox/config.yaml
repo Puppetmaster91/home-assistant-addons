@@ -19,8 +19,7 @@ options:
   db_user: netbox
   db_password: password
   db_name: netbox
-  redis_host: localhost
-  redis_port: 6379
+  db_wait_debug: bool
 schema:
   admin_username: str
   admin_password: str
@@ -28,5 +27,4 @@ schema:
   db_user: str
   db_password: str
   db_name: str
-  redis_host: str
-  redis_port: int
+  db_wait_debug: false
