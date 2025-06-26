@@ -13,4 +13,5 @@ if [ "${DB_WAIT_DEBUG}" = "true" ]; then
 fi
 
 # Start NetBox
-/opt/netbox/launch.py
+echo "🚀 Starting NetBox via supervisord..."
+exec /usr/bin/supervisord -c /etc/supervisord.conf
