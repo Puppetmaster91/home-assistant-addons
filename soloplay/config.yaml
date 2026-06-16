@@ -1,0 +1,17 @@
+name: "SoloPlay Server"
+version: "1.0.0"
+slug: "soloplay_server"
+description: "SoloPlay Server kørende som Home Assistant Add-on"
+arch:
+  - amd64
+  - aarch64
+init: false
+ports:
+  6968/tcp: 6968
+host_network: false
+options:
+  db_connection: "Server=IP_PÅ_DIN_SQL_SERVER;Database=SoloPlay;User Id=sa;Password=DitPassword;TrustServerCertificate=True;"
+  soloplay_token: "Indtast_Din_Token_Her"
+schema:
+  db_connection: str
+  soloplay_token: str
