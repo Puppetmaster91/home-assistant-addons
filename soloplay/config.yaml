@@ -12,6 +12,8 @@ host_network: false
 options:
   db_connection: "Server=IP_PÅ_DIN_SQL_SERVER;Database=SoloPlay;User Id=sa;Password=DitPassword;TrustServerCertificate=True;"
   soloplay_token: "LavEnLangKryptografiskStrengHerPåOver32Tegn"
+  seq_url: "http://din-seq-server-ip:5341"
 schema:
   db_connection: str
   soloplay_token: str
+  seq_url: str?
