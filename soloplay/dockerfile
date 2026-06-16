@@ -1,0 +1,21 @@
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /source
+ARG TARGETARCH
+
+# Copy project file and restore as distinct layers
+COPY --link . .
+RUN dotnet restore SoloPlay/Server -a $TARGETARCH
+
+# Copy source code and publish app
+COPY --link . .
+RUN dotnet publish SoloPlay/Server -a $TARGETARCH --no-restore -o /app
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+EXPOSE 6968
+WORKDIR /app
+COPY --link --from=build /app .
+RUN chmod 777 /app/wwwroot/img/games/counting/generated
+RUN chmod 777 /app/wwwroot/img/games/jigsawgame/saved
+USER $APP_UID
+ENTRYPOINT ["dotnet", "SoloPlay.Server.dll", "--urls", "http://0.0.0.0:6968"]
