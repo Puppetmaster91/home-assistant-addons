@@ -18,4 +18,9 @@ COPY --link --from=build /app .
 RUN chmod 777 /app/wwwroot/img/games/counting/generated
 RUN chmod 777 /app/wwwroot/img/games/jigsawgame/saved
 USER $APP_UID
+
+# Home Assistant sender instillingerne ind som SUPERVISOR_OPTION_<NAVN>
+ENV ConnectionStrings__DefaultConnection=$SUPERVISOR_OPTION_DB_CONNECTION
+ENV SoloPlaySettings__Token=$SUPERVISOR_OPTION_SOLOPLAY_TOKEN
+
 ENTRYPOINT ["dotnet", "SoloPlay.Server.dll", "--urls", "http://0.0.0.0:6968"]
