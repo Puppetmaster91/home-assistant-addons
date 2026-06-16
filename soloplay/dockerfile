@@ -26,5 +26,6 @@ USER $APP_UID
 # Map Home Assistant indstillinger over til .NET appsettings struktur
 ENV ConnectionStrings__DefaultConnection=$SUPERVISOR_OPTION_DB_CONNECTION
 ENV AppSettings__Token=$SUPERVISOR_OPTION_SOLOPLAY_TOKEN
+ENV Serilog__WriteTo__1__Args__serverUrl=$SUPERVISOR_OPTION_SEQ_URL
 
 ENTRYPOINT ["dotnet", "SoloPlay.Server.dll", "--urls", "http://0.0.0.0:6968"]
