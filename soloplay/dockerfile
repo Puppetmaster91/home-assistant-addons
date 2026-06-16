@@ -15,12 +15,16 @@ FROM mcr.microsoft.com/dotnet/aspnet:10.0
 EXPOSE 6968
 WORKDIR /app
 COPY --link --from=build /app .
+
+# Sikring af rettigheder til billed- og spilmapper
+RUN chown -R $APP_UID:$APP_UID /app/wwwroot
 RUN chmod 777 /app/wwwroot/img/games/counting/generated
 RUN chmod 777 /app/wwwroot/img/games/jigsawgame/saved
+
 USER $APP_UID
 
-# Home Assistant sender instillingerne ind som SUPERVISOR_OPTION_<NAVN>
+# Map Home Assistant indstillinger over til .NET appsettings struktur
 ENV ConnectionStrings__DefaultConnection=$SUPERVISOR_OPTION_DB_CONNECTION
-ENV SoloPlaySettings__Token=$SUPERVISOR_OPTION_SOLOPLAY_TOKEN
+ENV AppSettings__Token=$SUPERVISOR_OPTION_SOLOPLAY_TOKEN
 
 ENTRYPOINT ["dotnet", "SoloPlay.Server.dll", "--urls", "http://0.0.0.0:6968"]
