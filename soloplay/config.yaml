@@ -1,6 +1,6 @@
 name: "SoloPlay Server"
 description: "SoloPlay server-applikation med PostgreSQL support"
-version: "1.0.0"
+version: "1.0.1"
 slug: "soloplay"
 init: false
 
