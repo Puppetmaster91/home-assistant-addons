@@ -5,7 +5,7 @@ slug: "soloplay"
 init: false
 
 # Sidepanel og Ingress konfiguration
-ingress: true
+ingress: false
 ingress_port: 6968
 panel_title: "SoloPlay"
 panel_icon: "mdi:controller"
