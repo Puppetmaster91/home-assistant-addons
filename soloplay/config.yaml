@@ -3,6 +3,13 @@ description: "SoloPlay server-applikation med PostgreSQL support"
 version: "1.0.0"
 slug: "soloplay"
 init: false
+
+# Sidepanel og Ingress konfiguration
+ingress: true
+ingress_port: 6968
+panel_title: "SoloPlay"
+panel_icon: "mdi:controller"
+
 arch:
   - amd64
   - aarch64
