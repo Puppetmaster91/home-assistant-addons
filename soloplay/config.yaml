@@ -1,19 +1,28 @@
 name: "SoloPlay Server"
+description: "SoloPlay server-applikation med PostgreSQL support"
 version: "1.0.0"
-slug: "soloplay_server"
-description: "SoloPlay Server kørende som Home Assistant Add-on"
+slug: "soloplay"
+init: false
 arch:
   - amd64
   - aarch64
-init: false
 ports:
   6968/tcp: 6968
-host_network: false
+ports_description:
+  6968/tcp: "SoloPlay Web interface"
 options:
-  db_connection: "Server=IP_PÅ_DIN_SQL_SERVER;Database=SoloPlay;User Id=sa;Password=DitPassword;TrustServerCertificate=True;"
-  soloplay_token: "LavEnLangKryptografiskStrengHerPåOver32Tegn"
-  seq_url: "http://din-seq-server-ip:5341"
+  app_token: "Skift_Dette_Token_Til_Noget_Langt_Over_32_Tegn"
+  enable_migration: true
+  db_host: "core-postgressql" # eller IP på din Postgres server
+  db_port: 5432
+  db_name: "Soloplay"
+  db_user: "app"
+  db_password: "postgres-dev-password"
 schema:
-  db_connection: str
-  soloplay_token: str
-  seq_url: str?
+  app_token: str
+  enable_migration: bool
+  db_host: str
+  db_port: int
+  db_name: str
+  db_user: str
+  db_password: str
