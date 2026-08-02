@@ -1,31 +1,23 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /source
 ARG TARGETARCH
 
-# Copy project file and restore as distinct layers
-COPY --link . .
+COPY . .
 RUN dotnet restore SoloPlay/Server -a $TARGETARCH
-
-# Copy source code and publish app
-COPY --link . .
 RUN dotnet publish SoloPlay/Server -a $TARGETARCH --no-restore -o /app
 
-# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
-EXPOSE 6968
 WORKDIR /app
-COPY --link --from=build /app .
 
-# Sikring af rettigheder til billed- og spilmapper
-RUN chown -R $APP_UID:$APP_UID /app/wwwroot
-RUN chmod 777 /app/wwwroot/img/games/counting/generated
-RUN chmod 777 /app/wwwroot/img/games/jigsawgame/saved
+# Installer værktøjer til HA startup script
+RUN apt-get update && apt-get install -y jq bash && rm -rf /var/lib/apt/lists/*
 
-USER $APP_UID
+COPY --from=build /app .
+COPY run.sh /app/run.sh
+RUN chmod +x /app/run.sh
 
-# Map Home Assistant indstillinger over til .NET appsettings struktur
-ENV ConnectionStrings__DefaultConnection=$SUPERVISOR_OPTION_DB_CONNECTION
-ENV AppSettings__Token=$SUPERVISOR_OPTION_SOLOPLAY_TOKEN
-ENV Serilog__WriteTo__1__Args__serverUrl=$SUPERVISOR_OPTION_SEQ_URL
+RUN chmod -R 777 /app/wwwroot/img/games/counting/generated 2>/dev/null || true
+RUN chmod -R 777 /app/wwwroot/img/games/jigsawgame/saved 2>/dev/null || true
 
-ENTRYPOINT ["dotnet", "SoloPlay.Server.dll", "--urls", "http://0.0.0.0:6968"]
+EXPOSE 6968
+ENTRYPOINT ["/app/run.sh"]
