@@ -1,6 +1,6 @@
 name: "SoloPlay Server"
-description: "SoloPlay server-applikation med PostgreSQL support"
-version: "1.0.1"
+description: "SoloPlay server-applikation med PostgreSQL support, Tilgå website via http://<ha-IP>:6968 eller en anden port hvis du har ændret det i config"
+version: "1.0.2"
 slug: "soloplay"
 init: false
 
@@ -18,7 +18,7 @@ ports:
 ports_description:
   6968/tcp: "SoloPlay Web interface"
 options:
-  app_token: "Skift_Dette_Token_Til_Noget_Langt_Over_32_Tegn"
+  app_token: "Skift_Dette_Token_Til_Noget_Langt_Over_50_Tegn"
   enable_migration: true
   db_host: "core-postgressql" # eller IP på din Postgres server
   db_port: 5432
